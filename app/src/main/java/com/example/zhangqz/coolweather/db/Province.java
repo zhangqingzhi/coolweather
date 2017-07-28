@@ -7,16 +7,16 @@ import org.litepal.crud.DataSupport;
  */
 
 public class Province extends DataSupport {
-    private int mId;
+    private int id; // 这个是主键id ，不能改名，如使用 mId 则相当于多了一个列 “mid”
     private String mName;
     private int mCode;
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public void setId(int id) {
-        mId = id;
+        this.id = id;
     }
 
     public String getName() {

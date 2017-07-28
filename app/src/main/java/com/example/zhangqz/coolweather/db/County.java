@@ -7,24 +7,24 @@ import org.litepal.crud.DataSupport;
  */
 
 public class County extends DataSupport {
-    private int mId;
-    private int mName;
+    private int id; // 这个是主键id ，不能改名，如使用 mId 则相当于多了一个列 “mid”
+    private String mName;
     private int mWeatherId;
     private int mCityId;
 
     public int getId() {
-        return mId;
+        return id;
     }
 
     public void setId(int id) {
-        mId = id;
+        this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return mName;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         mName = name;
     }
 
