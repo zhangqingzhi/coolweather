@@ -9,7 +9,7 @@ import org.litepal.crud.DataSupport;
 public class County extends DataSupport {
     private int id; // 这个是主键id ，不能改名，如使用 mId 则相当于多了一个列 “mid”
     private String mName;
-    private int mWeatherId;
+    private String mWeatherId;
     private int mCityId;
 
     public int getId() {
@@ -28,11 +28,11 @@ public class County extends DataSupport {
         mName = name;
     }
 
-    public int getWeatherId() {
+    public String getWeatherId() {
         return mWeatherId;
     }
 
-    public void setWeatherId(int weatherId) {
+    public void setWeatherId(String weatherId) {
         mWeatherId = weatherId;
     }
 

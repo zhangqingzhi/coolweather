@@ -1,6 +1,6 @@
 <litepal>
     <dbname value="cool_weather" />
-    <version value="2"/>
+    <version value="3"/>
 
     <list>
         <mapping class="com.example.zhangqz.coolweather.db.Province"/>

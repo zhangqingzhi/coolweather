@@ -5,6 +5,8 @@ import android.text.TextUtils;
 import com.example.zhangqz.coolweather.db.City;
 import com.example.zhangqz.coolweather.db.County;
 import com.example.zhangqz.coolweather.db.Province;
+import com.example.zhangqz.coolweather.gson.Weather;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +53,7 @@ public class Utility {
             public void onAnalysis(JSONObject jsonObject) throws JSONException {
                 County county = new County();
                 county.setName(jsonObject.getString("name"));
-                county.setWeatherId(jsonObject.getInt("id"));
+                county.setWeatherId(jsonObject.getString("weather_id"));
                 county.setCityId(cityId);
                 county.save();
             }
@@ -78,5 +80,18 @@ public class Utility {
 
     private interface OnJsonAnalysis{
         void onAnalysis(JSONObject jsonObject) throws JSONException;
+    }
+
+    public static Weather handleWeatherRespone(String respone) {
+        try {
+            JSONObject jsonObject = new JSONObject(respone);
+            JSONArray jsonArray = jsonObject.getJSONArray("HeWeather");
+            String weatherContent = jsonArray.getJSONObject(0).toString();
+            return new Gson().fromJson(weatherContent, Weather.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return  null;
     }
 }

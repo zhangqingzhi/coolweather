@@ -88,6 +88,10 @@ public class ChooseAreaFragment extends Fragment {
                 } else if (mCurrentLevel == LEVE_CITY) {
                     mSelectedCity = mCities.get(position);
                     queryCounties();
+                } else if (mCurrentLevel == LEVE_COUNTY) {
+                    String weatherId = mCounties.get(position).getWeatherId();
+                    WeatherActivity.actionStart(getActivity(), weatherId);
+                    //getActivity().finish();
                 }
 
             }
