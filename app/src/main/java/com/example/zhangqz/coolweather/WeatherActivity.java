@@ -23,6 +23,7 @@ import android.content.Intent;
 import com.bumptech.glide.Glide;
 import com.example.zhangqz.coolweather.gson.Forecast;
 import com.example.zhangqz.coolweather.gson.Weather;
+import com.example.zhangqz.coolweather.service.AutoUpdateService;
 import com.example.zhangqz.coolweather.util.HttpUtil;
 import com.example.zhangqz.coolweather.util.Utility;
 
@@ -37,7 +38,7 @@ public class WeatherActivity extends AppCompatActivity {
     public static final String TAG = WeatherActivity.class.getSimpleName();
     private static final String EXTRA_KEY_WEATHER_ID = "weather_id";
     private static final String EXTRA_KEY_IMAGE_BACKGROUND = "image_background";
-    private static final String REQUEST_WEATHER_KEY = "6d0e912f0c1e46dc98c131d48810ce2c";
+    public static final String REQUEST_WEATHER_KEY = "6d0e912f0c1e46dc98c131d48810ce2c";
 
     private DrawerLayout mDrawerLayout;
     private Button mBtnNav;
@@ -168,6 +169,7 @@ public class WeatherActivity extends AppCompatActivity {
 
     }
 
+
     // 根据 ID 来获取天气信息
     protected void requestWeather(final String weatherId) {
         mWeatherId = weatherId;
@@ -219,7 +221,13 @@ public class WeatherActivity extends AppCompatActivity {
         loadImageBg();
     }
 
+
     private void showWeatherInfo(Weather weather) {
+        if (weather != null && "ok".equals(weather.status)) {
+            Intent intent = new Intent(this, AutoUpdateService.class);
+            startService(intent);
+        }
+
         mTvTitleCity.setText(weather.basic.cityName);
         mTvTitleUpdateTime.setText(weather.basic.update.updateTime.split(" ")[1]);
         mTvDegree.setText(weather.now.temperature + " ℃");
