@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -153,8 +154,8 @@ public class WeatherActivity extends AppCompatActivity {
             tvMax.setText(forecast.temperature.max);
             tvMin.setText(forecast.temperature.min);
             mForecastLayout.addView(view);
+            Log.e(TAG, "showWeatherInfo: " + forecast.date);
         }
-        mForecastLayout.setVisibility(View.VISIBLE);
 
         if (weather.aqi != null) {
             mTvAqi.setText(weather.aqi.city.aqi);
